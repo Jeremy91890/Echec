@@ -1,0 +1,4 @@
+jeu_echec_echiquier:
+    resource: "@JeuEchecEchiquierBundle/Resources/config/routing.yml"
+    prefix:   /
+

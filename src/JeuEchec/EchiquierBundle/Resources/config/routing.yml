@@ -1,0 +1,9 @@
+jeu_echec_echiquier_homepage:
+    path:     /
+    defaults: { _controller: "JeuEchecEchiquierBundle:Default:index" }
+    
+jeu_echec_echiquier_plateau:
+    path:     /plateau
+    defaults: { _controller: "JeuEchecEchiquierBundle:Echiquier:plateau" }
+    
+    

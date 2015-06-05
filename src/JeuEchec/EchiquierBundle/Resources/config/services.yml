@@ -1,0 +1,4 @@
+services:
+#    jeu_echec_echiquier.example:
+#        class: JeuEchec\EchiquierBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+{% block title %}Echec {% endblock %}
+{% block body %}
+<a href="{{ path('jeu_echec_echiquier_homepage') }}">Retour au menu </a>
+<h1>Une partie d'Echec</h1>
+<table>
+	{% for i in 1..8 %}
+	<tr>{% for n in 0..7 %}
+			{% if i % 2 == 0 %}
+				{% if n % 2 == 0 %}
+					<td class="caseBlanche">{{ matrice.get(i, n) }}</td>
+				{% else %}
+					<td class="caseNoire">{{ matrice.get(i, n) }}</td>
+				{% endif %}
+			{% else %}
+				{% if n % 2 == 0 %}
+					<td class="caseNoire">{{ matrice.get(i, n) }}</td>
+				{% else %}
+					<td class="caseBlanche">{{ matrice.get(i, n) }}</td>
+				{% endif %}
+			{% endif %}
+		{% endfor %}</tr>
+	{% endfor %}
+{% endblock %}
