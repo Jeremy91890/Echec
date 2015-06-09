@@ -11,5 +11,4 @@ class Joueur{
 		$this->couleur=$uneCouleur;
 	}
 	
-	
 }

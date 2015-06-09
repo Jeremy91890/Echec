@@ -15,7 +15,7 @@ abstract class Pieces
 	public function __construct($uneCouleur, $x, $y, $plateau){
 		$this->couleur = $uneCouleur;
 		$this->x = $y;
-		$this->y = ord($x) - 96;
+		$this->y = ord($x) - 97;
 		$this->plateau = $plateau;
 	}
 	
@@ -26,10 +26,10 @@ abstract class Pieces
 	}
 	public function setPosition($x, $y){
 		$this->x = $y;
-		$this->y = ord($x) - 96;
+		$this->y = ord($x) - 97;
 	}
 	
-	//____________________________________Accesseurs_______________________________________________
+	//_______________________________________Accesseurs_______________________________________________
 	
 	public function getType(){
 		return $this->type;
@@ -46,8 +46,9 @@ abstract class Pieces
 	public function getY(){
 		return $this->y;
 	}
-	//_________________________________________________________________________________________
-
+	//______________________________________________________________________________________________
+	
+	//La création de classes abstraites va servir de base à toutes les classes filles (elles devront obligatoirement posséder ces fonctions)
 	public abstract function deplacementPossible();
 	public abstract function deplacement($x, $y);
 	
