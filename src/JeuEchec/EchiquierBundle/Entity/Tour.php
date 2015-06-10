@@ -31,10 +31,7 @@ class Tour extends Pieces {
 				$caseLibre[] = array ($x, $y);
 			}
 			else {
-				$couleur = explode('-', $this->plateau->get($x, $y))[1];
-				//grâce à explode() on peut récupérer seulement la couleur dans le toString
-				//et donc savoir si c'est une piece adverse ou non
-				if ($this->couleur == $couleur){
+				if ($this->couleur == $this->plateau->get($x, $y)->getCouleur()){
 					$direction = false;
 				}
 				else {
@@ -47,18 +44,25 @@ class Tour extends Pieces {
 		}
 	}
 	//
-	public function deplacementPossible() {
+	public function caseLibre() {
 		
 		$caseLibre = array();
-		
-		boucle(0,-1, $caseLibre);
-		boucle(0,1, $caseLibre);
-		boucle(1,0, $caseLibre);
-		boucle(-1,0, $caseLibre);
+	
+		$this->boucle(0,-1, $caseLibre);
+		$this->boucle(0,1, $caseLibre);
+		$this->boucle(1,0, $caseLibre);
+		$this->boucle(-1,0, $caseLibre);
 		
 		return $caseLibre;
 	}
 
+	public function deplacementPossible(){
+		
+		$casesLibres = caseLibre();
+		foreach ($casesLibres as $case){
+			$this->plateau[$case]->setEnDanger(true) ;
+		}
+	}
 	public function deplacement($x, $y) {
 		
 	}

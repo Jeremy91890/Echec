@@ -1,0 +1,9 @@
+diff a/src/JeuEchec/EchiquierBundle/Resources/views/includes/plateau.html.twig b/src/JeuEchec/EchiquierBundle/Resources/views/includes/plateau.html.twig	(rejected hunks)
+@@ -9,7 +9,6 @@
+ 	<tr>{% for n in 0..7 %}
+ 			{% if i % 2 == 0 %}
+ 				{% if n % 2 == 0 %}
+-					<td class="caseBlanche">{{ matrice.get(i, n) }}</td>
+ 					<td class="caseNoire">{{ matrice.get(i, n) }}</td>
+ 				{% else %}
+ 					<td class="caseBlanche">{{ matrice.get(i, n) }}</td>

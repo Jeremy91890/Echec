@@ -6,4 +6,8 @@ jeu_echec_echiquier_plateau:
     path:     /plateau
     defaults: { _controller: "JeuEchecEchiquierBundle:Echiquier:plateau" }
     
+jeu_echec_echiquier_cases:
+    path:     /voir/{x}{y}
+    defaults: { _controller: "JeuEchecEchiquierBundle:Echiquier:voir" }
+
     
