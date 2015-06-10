@@ -21,40 +21,46 @@ class Pion extends Pieces {
 		$x = $this->x + $pmunx;
 		$y = $this->y + $pmuny;
 
-		if ($this->plateau->get($x, $y) == "") {
+		if ($this->plateau->get($x - 1, $y)!= false && $this->plateau->get($x, $y)->toString() == '') {
 				$caseLibre[] = array ($x, $y);
 			}
-		if (get_class($this->plateau->get($x + 1, $y)) == Pieces && $pmuny < 2 && $pmuny > -2){
-			$couleur = explode('-', $this->plateau->get($x + 1, $y))[1];
-			if ($this->couleur != $couleur){
+		if ($this->plateau->get($x - 1, $y)!= false && $this->plateau->get($x + 1, $y)->toString() != "" && $pmuny < 2 && $pmuny > -2){
+			if ($this->couleur != $this->plateau->get($x + 1, $y)){
 				$caseLibre[] = array($x + 1, $y);
 			}
 		}
-		if (get_class($this->plateau->get($x - 1, $y)) == Pieces && $pmuny < 2 && $pmuny > -2){			
-			$couleur = explode('-', $this->plateau->get($x - 1, $y))[1];
-			if ($this->couleur != $couleur){
+		if ($this->plateau->get($x - 1, $y)!= false && $this->plateau->get($x - 1, $y)->toString() != "" && $pmuny < 2 && $pmuny > -2){			
+			if ($this->couleur != $this->plateau->get($x - 1, $y)){
 				$caseLibre[] = array($x - 1, $y);
 			}
 		}
 	}
 	
-	public function deplacementPossible() {
+	public function caseLibre() {
 
 		$caseLibre = array();
 		
 		if ($this->couleur == 'Noir'){
-			verif(0, - 1, $caseLibre);
+			$this->verif(0, - 1, $caseLibre);
 			if ($this->deplace == false){
-				verif(0, - 2, $caseLibre);
+				$this->verif(0, - 2, $caseLibre);
 			}
 		}
 		else {
-			verif(0, 1, $caseLibre);
+			$this->verif(0, 1, $caseLibre);
 			if ($this->deplace == false){
-				verif(0, 2, $caseLibre);
+				$this->verif(0, 2, $caseLibre);
 			}
 		}
 		return $caseLibre;
+	}
+	
+	public function deplacementPossible(){
+	
+		$casesLibres = $this->caseLibre();
+		foreach ($casesLibres as $case){
+			$this->plateau[$case]->setEnDanger(true) ;
+		}
 	}
 
 	public function deplacement($x, $y) {

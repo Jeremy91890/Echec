@@ -12,8 +12,7 @@ class Vide extends Pieces {
 	
 	function toString() {
 		return "";
-	}
-	
+	} 
 	public function deplacementPossible() {
 		return array();
 	}

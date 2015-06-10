@@ -19,31 +19,38 @@ class Roi extends Pieces {
 		$x = $this->x + $pmunx;
 		$y = $this->y + $pmuny;
 
-		if ($this->plateau->get($x, $y) == "") {
+		if ($this->plateau->get($x, $y) == '') {
 				$caseLibre[] = array ($x, $y);
 			}
 			else {
-				$couleur = explode('-', $this->plateau->get($x, $y))[1];
-				if ($this->couleur != $couleur){
+				if ($this->couleur == $this->plateau->get($x, $y)->getCouleur()){
 					$caseLibre[] = array($x, $y);
 				}
 		}
 	}
 	
-	public function deplacementPossible() {
+	public function caseLibre() {
 
 		$caseLibre = array();
 
-		verif(-1,1, $caseLibre);
-		verif(1,-1, $caseLibre);
-		verif(1,1, $caseLibre);
-		verif(-1,-1, $caseLibre);
-		verif(0,-1, $caseLibre);
-		verif(0,1, $caseLibre);
-		verif(1,0, $caseLibre);
-		verif(-1,0, $caseLibre);
+		$this->verif(-1,1, $caseLibre);
+		$this->verif(1,-1, $caseLibre);
+		$this->verif(1,1, $caseLibre);
+		$this->verif(-1,-1, $caseLibre);
+		$this->verif(0,-1, $caseLibre);
+		$this->verif(0,1, $caseLibre);
+		$this->verif(1,0, $caseLibre);
+		$this->verif(-1,0, $caseLibre);
 		
 		return $caseLibre;
+	}
+	
+	public function deplacementPossible(){
+	
+		$casesLibres = $this->caseLibre();
+		foreach ($casesLibres as $case){
+			$this->plateau[$case]->setEnDanger(true) ;
+		}
 	}
 
 	public function deplacement($x, $y) {

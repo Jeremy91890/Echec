@@ -62,7 +62,7 @@ abstract class Pieces
 	}
 	
 	public function lienString(){
-		return $this->getX().chr($this->getY() + 97);
+		return 'voir'.$this->getX().chr($this->getY() + 97);
 	}
 	//______________________________________________________________________________________________
 	

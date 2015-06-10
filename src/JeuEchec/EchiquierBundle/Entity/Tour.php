@@ -58,7 +58,7 @@ class Tour extends Pieces {
 
 	public function deplacementPossible(){
 		
-		$casesLibres = caseLibre();
+		$casesLibres = $this->caseLibre();
 		foreach ($casesLibres as $case){
 			$this->plateau[$case]->setEnDanger(true) ;
 		}

@@ -23,29 +23,36 @@ class Cavalier extends Pieces {
 				$caseLibre[] = array ($x, $y);
 			}
 			else {
-				$couleur = explode('-', $this->plateau->get($x, $y))[1];
-				if ($this->couleur != $couleur){
+				if ($this->couleur == $this->plateau->get($x, $y)->getCouleur()){
 					$caseLibre[] = array($x, $y);
 				}
 			}
 	}
 	
-	public function deplacementPossible() {
+	public function caseLibre() {
 
 		$caseLibre = array();
 
-		verif(1, -2, $caseLibre);
-		verif(-1, -2, $caseLibre);
-		verif(1, 2, $caseLibre);
-		verif(-1, 2, $caseLibre);
-		verif(2, 1, $caseLibre);
-		verif(-2, 1, $caseLibre);
-		verif(2, -1, $caseLibre);
-		verif(-2 , -1, $caseLibre);
+		$this->verif(1, -2, $caseLibre);
+		$this->verif(-1, -2, $caseLibre);
+		$this->verif(1, 2, $caseLibre);
+		$this->verif(-1, 2, $caseLibre);
+		$this->verif(2, 1, $caseLibre);
+		$this->verif(-2, 1, $caseLibre);
+		$this->verif(2, -1, $caseLibre);
+		$this->verif(-2 , -1, $caseLibre);
 		
 		return $caseLibre;
 	}
 
+	public function deplacementPossible(){
+	
+		$casesLibres = $this->caseLibre();
+		foreach ($casesLibres as $case){
+			$this->plateau[$case]->setEnDanger(true) ;
+		}
+	}
+	
 	public function deplacement($x, $y) {
 
 	}
