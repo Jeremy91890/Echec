@@ -14,7 +14,7 @@ class Reine extends Pieces {
 	}
 
 	
-	private function boucle($pmunx, $pmuny, $caseLibre) {
+	private function boucle($pmunx, $pmuny, &$caseLibre) {
 		$direction = true;
 		$x = $this->x + $pmunx;
 		$y = $this->y + $pmuny;
@@ -23,7 +23,7 @@ class Reine extends Pieces {
 			if ($this->plateau->get($x, $y) == false){
 				$direction = false;
 			}
-			else if ($this->plateau->get($x, $y) == "") {
+			else if ($this->plateau->get($x, $y)->toString() == 'vide') {
 				$caseLibre[] = array ($x, $y);
 			}
 			else {
@@ -35,31 +35,31 @@ class Reine extends Pieces {
 					$direction = false ;
 				}
 			}
-			$x = $this->x + $pmunx;
-			$y = $this->y + $pmuny;
+			$x = $x + $pmunx;
+			$y = $y + $pmuny;
 		}
 	}
-	//
+	
 	public function caseLibre() {
 
 		$caseLibre = array();
 
-		$this->boucle(-1,1, $caseLibre);
-		$this->boucle(1,-1, $caseLibre);
-		$this->boucle(1,1, $caseLibre);
-		$this->boucle(-1,-1, $caseLibre);
-		$this->boucle(0,-1, $caseLibre);
-		$this->boucle(0,1, $caseLibre);
-		$this->boucle(1,0, $caseLibre);
-		$this->boucle(-1,0, $caseLibre);
+		$this->boucle(-1, 1, $caseLibre);
+		$this->boucle(1, -1, $caseLibre);
+		$this->boucle(1, 1, $caseLibre);
+		$this->boucle(-1, -1, $caseLibre);
+		$this->boucle(0, -1, $caseLibre);
+		$this->boucle(0, 1, $caseLibre);
+		$this->boucle(1, 0, $caseLibre);
+		$this->boucle(-1, 0, $caseLibre);
 		
 		return $caseLibre;
 	}
 	public function deplacementPossible(){
 	
-		$casesLibres = $this->caseLibre();
+	$casesLibres = $this->caseLibre();
 		foreach ($casesLibres as $case){
-			$this->plateau[$case]->setEnDanger(true) ;
+			$this->plateau->get($case[0], $case[1])->setEnDanger(true) ;
 		}
 	}
 

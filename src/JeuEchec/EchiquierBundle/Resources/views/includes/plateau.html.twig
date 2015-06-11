@@ -9,21 +9,21 @@
 	<tr>{% for n in 0..7 %}
 			{% if i % 2 == 0 %}
 				{% if n % 2 == 0 %}
-					{% if matrice.get(i, n) == "" %}<td class="caseNoire">{{ matrice.get(i, n) }}</td>
-					{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
-					{% endif %}
+					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu">{{ matrice.get(i, n).toString }}</td>
+					{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString()}}</a></td>
+					{% endif %}		
 				{% else %}
-					{% if matrice.get(i, n) == "" %}<td class="caseBlanche">{{ matrice.get(i, n) }}</td>
+					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu">{{ matrice.get(i, n).toString }}</td>
 					{% else %}<td class="caseBlanche"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
 					{% endif %}
 				{% endif %}
 			{% else %}
 				{% if n % 2 == 0 %}
-					{% if matrice.get(i, n) == "" %}<td class="caseBlanche">{{ matrice.get(i, n) }}</td>
+					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu">{{ matrice.get(i, n).toString }}</td>
 					{% else %}<td class="caseBlanche"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
 					{% endif %}
 				{% else %}
-					{% if matrice.get(i, n) == "" %}<td class="caseNoire">{{ matrice.get(i, n) }}</td>
+					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu">{{ matrice.get(i, n).toString }}</td>
 					{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
 					{% endif %}
 				{% endif %}

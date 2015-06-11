@@ -11,7 +11,7 @@ abstract class Pieces
     protected $y;
     protected $plateau;
     protected $enDanger = false;
-
+	
 
 	public function __construct($uneCouleur, $x, $y, $plateau){
 		
@@ -24,7 +24,6 @@ abstract class Pieces
 		$this->y = $y;
 		$this->plateau = $plateau;
 	}
-	
 	//_______________________________________Modificateurs___________________________________________
 	
 	public function setCouleur($uneCouleur){
@@ -59,6 +58,9 @@ abstract class Pieces
 	
 	public function getY(){
 		return $this->y;
+	}
+	public function estEnDanger(){
+		return $this->enDanger;
 	}
 	
 	public function lienString(){

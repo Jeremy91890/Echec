@@ -21,7 +21,9 @@ class EchiquierController extends Controller
 	
 	public function plateauAction()
 	{
-		session_destroy();
+		
+		//session_destroy();
+		
 		$this->initMatrice();
 		
 		return $this->render('JeuEchecEchiquierBundle:includes:plateau.html.twig', array('matrice'=> $this->matrice));
@@ -31,6 +33,8 @@ class EchiquierController extends Controller
 		
 		$this->initMatrice();
 		$this->matrice->get(intval($x), $y)->deplacementPossible();
+		
 		return $this->render('JeuEchecEchiquierBundle:includes:plateau.html.twig', array('matrice'=> $this->matrice));
+		
 	}
 }

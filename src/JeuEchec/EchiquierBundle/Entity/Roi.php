@@ -14,18 +14,19 @@ class Roi extends Pieces {
 	}
 
 	
-	private function verif($pmunx, $pmuny, $caseLibre) {
+	private function verif($pmunx, $pmuny, &$caseLibre) {
 
 		$x = $this->x + $pmunx;
 		$y = $this->y + $pmuny;
-
-		if ($this->plateau->get($x, $y) == '') {
-				$caseLibre[] = array ($x, $y);
-			}
-			else {
-				if ($this->couleur == $this->plateau->get($x, $y)->getCouleur()){
-					$caseLibre[] = array($x, $y);
+		if ($this->plateau->get($x, $y) != false){
+			if ($this->plateau->get($x, $y)->toString() == 'vide') {
+					$caseLibre[] = array ($x, $y);
 				}
+				else {
+					if ($this->couleur != $this->plateau->get($x, $y)->getCouleur()){
+						$caseLibre[] = array($x, $y);
+					}
+			}
 		}
 	}
 	
@@ -49,7 +50,7 @@ class Roi extends Pieces {
 	
 		$casesLibres = $this->caseLibre();
 		foreach ($casesLibres as $case){
-			$this->plateau[$case]->setEnDanger(true) ;
+			$this->plateau->get($case[0], $case[1])->setEnDanger(true) ;
 		}
 	}
 

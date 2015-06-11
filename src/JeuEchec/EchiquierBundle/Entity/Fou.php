@@ -14,7 +14,7 @@ class Fou extends Pieces {
 		return 'Fou-'.$this->couleur;
 	}
 
-	private function boucle($pmunx, $pmuny, $caseLibre) {
+	private function boucle($pmunx, $pmuny, &$caseLibre) {
 		$direction = true;
 		$x = $this->x + $pmunx;
 		$y = $this->y + $pmuny;
@@ -23,7 +23,7 @@ class Fou extends Pieces {
 			if ($this->plateau->get($x, $y) == false){
 				$direction = false;
 			}
-			else if ($this->plateau->get($x, $y) == "") {
+			else if ($this->plateau->get($x, $y)->toString() == 'vide') {
 				$caseLibre[] = array ($x, $y);
 			}
 			else {
@@ -35,8 +35,8 @@ class Fou extends Pieces {
 					$direction = false ;
 				}
 			}
-			$x = $this->x + $pmunx;
-			$y = $this->y + $pmuny;
+			$x += $pmunx;
+			$y += $pmuny;
 		}
 	}
 	//
@@ -55,7 +55,7 @@ class Fou extends Pieces {
 	
 		$casesLibres = $this->caseLibre();
 		foreach ($casesLibres as $case){
-			$this->plateau[$case]->setEnDanger(true) ;
+			$this->plateau->get($case[0], $case[1])->setEnDanger(true) ;
 		}
 	}
 	public function deplacement($x, $y) {

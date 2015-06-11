@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Pion extends Pieces {
 	
-	private $deplace = false;
+	private $estDeplace = false;
 	
 	public function __construct($uneCouleur, $x, $y, $plateau) {
 		parent::__construct($uneCouleur, $x, $y, $plateau);
@@ -16,22 +16,29 @@ class Pion extends Pieces {
 		return 'Pion-'.$this->couleur;
 	}
 	
-	private function verif($pmunx, $pmuny, $caseLibre) {
+	private function verif($pmunx, $pmuny, &$caseLibre) {
 
 		$x = $this->x + $pmunx;
 		$y = $this->y + $pmuny;
-
-		if ($this->plateau->get($x - 1, $y)!= false && $this->plateau->get($x, $y)->toString() == '') {
-				$caseLibre[] = array ($x, $y);
+		if ($this->plateau->get($x, $y) != false){
+			if ($this->plateau->get($x, $y)->toString() == 'vide') {
+					$caseLibre[] = array ($x, $y);
+				}
+			if($this->estDeplace == false && $this->couleur =='Blanc' && $this->plateau->get($x + 1, $y)->toString() == 'vide' &&  $this->plateau->get($x , $y)->toString() == 'vide'){
+					$caseLibre[] = array ($x + 1, $y);
 			}
-		if ($this->plateau->get($x - 1, $y)!= false && $this->plateau->get($x + 1, $y)->toString() != "" && $pmuny < 2 && $pmuny > -2){
-			if ($this->couleur != $this->plateau->get($x + 1, $y)){
-				$caseLibre[] = array($x + 1, $y);
+			if($this->estDeplace == false && $this->couleur =='Noir' && $this->plateau->get($x - 1, $y)->toString() == 'vide' && $this->plateau->get($x , $y)->toString() == 'vide'){
+				$caseLibre[] = array ($x - 1, $y);
 			}
-		}
-		if ($this->plateau->get($x - 1, $y)!= false && $this->plateau->get($x - 1, $y)->toString() != "" && $pmuny < 2 && $pmuny > -2){			
-			if ($this->couleur != $this->plateau->get($x - 1, $y)){
-				$caseLibre[] = array($x - 1, $y);
+			if ($this->plateau->get($x, $y + 1)!= false && $this->plateau->get($x , $y + 1)->toString() != "vide" ){
+				if ($this->couleur != $this->plateau->get($x, $y + 1)->getCouleur()){
+					$caseLibre[] = array($x, $y + 1);
+				}
+			}
+			if ($this->plateau->get($x, $y - 1) != false && $this->plateau->get($x, $y - 1)->toString() != "vide" ){			
+				if ($this->couleur != $this->plateau->get($x, $y - 1)->getCouleur()){
+					$caseLibre[] = array($x, $y - 1);
+				}
 			}
 		}
 	}
@@ -41,17 +48,13 @@ class Pion extends Pieces {
 		$caseLibre = array();
 		
 		if ($this->couleur == 'Noir'){
-			$this->verif(0, - 1, $caseLibre);
-			if ($this->deplace == false){
-				$this->verif(0, - 2, $caseLibre);
-			}
+			$this->verif( -1, 0, $caseLibre);
 		}
 		else {
-			$this->verif(0, 1, $caseLibre);
-			if ($this->deplace == false){
-				$this->verif(0, 2, $caseLibre);
-			}
+			$this->verif( 1, 0, $caseLibre);
+		
 		}
+		//var_dump($caseLibre);
 		return $caseLibre;
 	}
 	
@@ -59,11 +62,11 @@ class Pion extends Pieces {
 	
 		$casesLibres = $this->caseLibre();
 		foreach ($casesLibres as $case){
-			$this->plateau[$case]->setEnDanger(true) ;
-		}
+			$this->plateau->get($case[0], $case[1])->setEnDanger(true) ;
+		}	
 	}
 
 	public function deplacement($x, $y) {
-
+		
 	}
 }
