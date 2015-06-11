@@ -8,9 +8,12 @@ use Doctrine\ORM\EntityRepository;
 class Plateau 
 {
     private $plateau;
-
+    private $tour = 0;
+    private $couleurJoueur = 'Blanc';
+	
     //initialisation d'un plateau de 64 cases (8x8)
     public function __construct()
+    
     {
 		$this->plateau = array();
 		for ($i=1;$i<=8;$i++){
@@ -24,6 +27,7 @@ class Plateau
 					6 => new Vide($i, 'g', $this),
 					7 => new Vide($i, 'h', $this));
 		}
+		
 		 
 		//puis on les pose sur le plateau grâce à leurs coordonnées 
 		$this->plateau [1][0] = new Tour('Blanc', 1, 'a', $this);
@@ -86,5 +90,20 @@ class Plateau
     }
     public function setCase($x, $y, $piece) {
     	$this->plateau [$x][$y] = $piece;
+    }
+    
+    public function getCouleurJoueur(){
+    	if ($this->tour % 2 == 0){
+    		$couleurJoueur = 'Noir';
+    		$this->tour ++;
+    	}
+    	else{
+    		$couleurJoueur = 'Blanc';
+    		$this->tour ++;
+    	}
+    	return $couleurJoueur;
+    }
+    public function joueurSuivant(){
+    	$this->tour ++;
     }
 }

@@ -63,15 +63,17 @@ abstract class Pieces
 	public function estEnDanger(){
 		return $this->enDanger;
 	}
-	//______________________________________________________________________________________________
+	//_______________________________________________________________________________________________
 	
 	public function lienString(){
 		
-		return 'voir'.$this->getX().chr($this->getY() + 97);
+		if($this->plateau->getCouleurJoueur() == $this->couleur){
+			return 'voir'.$this->getX().chr($this->getY() + 97);			
+		}
 	}
 	
 	public function lienDeplace(){
-		
+		//$this->plateau->joueurSuivant();
 		return 'deplacer'.$this->getX().chr($this->getY() + 97);
 		
 	}
@@ -82,7 +84,6 @@ abstract class Pieces
 		$this->setPosition($x, $y);
 		$this->plateau->setCase($x, $y, $this);
 		$this->estDeplace = true;
-		
 	}
 	
 	//La création de classes abstraites va servir de base à toutes les classes filles (elles devront obligatoirement posséder ces fonctions)
