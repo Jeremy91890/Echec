@@ -63,4 +63,5 @@ class Tour extends Pieces {
 			$this->plateau->get($case[0], $case[1])->setEnDanger(true) ;
 		}
 	}
+	
 }

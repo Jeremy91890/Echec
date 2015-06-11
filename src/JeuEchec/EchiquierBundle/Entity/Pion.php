@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Pion extends Pieces {
 	
-	private $estDeplace = false;
 	
 	public function __construct($uneCouleur, $x, $y, $plateau) {
 		parent::__construct($uneCouleur, $x, $y, $plateau);
@@ -54,7 +53,6 @@ class Pion extends Pieces {
 			$this->verif( 1, 0, $caseLibre);
 		
 		}
-		//var_dump($caseLibre);
 		return $caseLibre;
 	}
 	
@@ -66,5 +64,4 @@ class Pion extends Pieces {
 		}	
 	}
 
-	
 }

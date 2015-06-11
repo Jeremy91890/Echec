@@ -11,6 +11,8 @@ abstract class Pieces
     protected $y;
     protected $plateau;
     protected $enDanger = false;
+    protected $estDeplace = false;
+    
 	
 
 	public function __construct($uneCouleur, $x, $y, $plateau){
@@ -18,7 +20,6 @@ abstract class Pieces
 		if(gettype($y) == "string") {
 			$y = ord($y) - 97;
 		}
-		
 		$this->couleur = $uneCouleur;
 		$this->x = $x;
 		$this->y = $y;
@@ -37,7 +38,7 @@ abstract class Pieces
 			$this->y = $y;
 		}
 	}
-	public function setEndanger($danger)
+	public function setEnDanger($danger)
 		{
 			$this->enDanger = $danger;
 		}
@@ -62,6 +63,7 @@ abstract class Pieces
 	public function estEnDanger(){
 		return $this->enDanger;
 	}
+	//______________________________________________________________________________________________
 	
 	public function lienString(){
 		
@@ -73,16 +75,18 @@ abstract class Pieces
 		return 'deplacer'.$this->getX().chr($this->getY() + 97);
 		
 	}
-	//______________________________________________________________________________________________
 	
-	//La création de classes abstraites va servir de base à toutes les classes filles (elles devront obligatoirement posséder ces fonctions)
-	public abstract function deplacementPossible();
 	public function deplacement($x, $y) {
 		
 		$this->plateau->setCase($this->x, $this->y , new Vide($this->x, $this->y, $this->plateau));
-		
 		$this->setPosition($x, $y);
 		$this->plateau->setCase($x, $y, $this);
+		$this->estDeplace = true;
+		
 	}
+	
+	//La création de classes abstraites va servir de base à toutes les classes filles (elles devront obligatoirement posséder ces fonctions)
+	public abstract function deplacementPossible();
+	
 	
 }

@@ -35,13 +35,12 @@ class EchiquierController extends Controller
 	public function voirAction($x , $y) {
 		
 		$this->initMatrice();
-		$this->matrice->get(intval($x), $y)->deplacementPossible();
-	
 		
 		$_SESSION['map'] = serialize($this->matrice);
 		$_SESSION['x'] = intval($x);
 		$_SESSION['y'] = $y;
 		
+		$this->matrice->get(intval($x), $y)->deplacementPossible();
 		return $this->render('JeuEchecEchiquierBundle:includes:plateau.html.twig', array('matrice'=> $this->matrice));
 	}
 	
