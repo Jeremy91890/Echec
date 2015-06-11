@@ -27,7 +27,7 @@ abstract class Pieces
 	//_______________________________________Modificateurs___________________________________________
 	
 	public function setCouleur($uneCouleur){
-		$this->couleur=$uneCouleur;
+		$this->couleur = $uneCouleur;
 	}
 	public function setPosition($x, $y){
 		$this->x = $x;
@@ -42,7 +42,7 @@ abstract class Pieces
 			$this->enDanger = $danger;
 		}
 	
-	//_______________________________________Accesseurs_______________________________________________
+	//________________________________________Accesseurs______________________________________________
 	
 	public function getType(){
 		return $this->type;
@@ -64,12 +64,25 @@ abstract class Pieces
 	}
 	
 	public function lienString(){
+		
 		return 'voir'.$this->getX().chr($this->getY() + 97);
+	}
+	
+	public function lienDeplace(){
+		
+		return 'deplacer'.$this->getX().chr($this->getY() + 97);
+		
 	}
 	//______________________________________________________________________________________________
 	
 	//La création de classes abstraites va servir de base à toutes les classes filles (elles devront obligatoirement posséder ces fonctions)
 	public abstract function deplacementPossible();
-	//public abstract function deplacement($x, $y);
+	public function deplacement($x, $y) {
+		
+		$this->plateau->setCase($this->x, $this->y , new Vide($this->x, $this->y, $this->plateau));
+		
+		$this->setPosition($x, $y);
+		$this->plateau->setCase($x, $y, $this);
+	}
 	
 }

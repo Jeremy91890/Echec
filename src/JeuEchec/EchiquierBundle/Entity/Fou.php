@@ -58,7 +58,4 @@ class Fou extends Pieces {
 			$this->plateau->get($case[0], $case[1])->setEnDanger(true) ;
 		}
 	}
-	public function deplacement($x, $y) {
-
-	}
 }

@@ -10,4 +10,6 @@ jeu_echec_echiquier_cases:
     path:     /voir{x}{y}
     defaults: { _controller: "JeuEchecEchiquierBundle:Echiquier:voir" }
 
-    
+jeu_echec_echiquier_deplacer:
+    path:     /deplacer{x}{y}
+    defaults: { _controller: "JeuEchecEchiquierBundle:Echiquier:deplacer" }

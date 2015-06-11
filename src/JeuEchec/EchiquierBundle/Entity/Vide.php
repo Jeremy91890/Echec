@@ -18,7 +18,4 @@ class Vide extends Pieces {
 		return array();
 	}
 
-	public function deplacement($x, $y) {
-
-	}
 }

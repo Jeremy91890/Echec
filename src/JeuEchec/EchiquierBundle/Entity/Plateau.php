@@ -84,4 +84,7 @@ class Plateau
     		return $this->getCase($x, $y);
     	}
     }
+    public function setCase($x, $y, $piece) {
+    	$this->plateau [$x][$y] = $piece;
+    }
 }

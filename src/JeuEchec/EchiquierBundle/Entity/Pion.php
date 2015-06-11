@@ -66,7 +66,5 @@ class Pion extends Pieces {
 		}	
 	}
 
-	public function deplacement($x, $y) {
-		
-	}
+	
 }

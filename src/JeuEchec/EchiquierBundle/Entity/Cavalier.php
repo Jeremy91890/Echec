@@ -54,7 +54,5 @@ class Cavalier extends Pieces {
 		}
 	}
 	
-	public function deplacement($x, $y) {
-
-	}
+	
 }

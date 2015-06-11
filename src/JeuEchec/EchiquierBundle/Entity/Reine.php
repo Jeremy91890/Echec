@@ -63,7 +63,4 @@ class Reine extends Pieces {
 		}
 	}
 
-	public function deplacement($x, $y) {
-
-	}
 }
