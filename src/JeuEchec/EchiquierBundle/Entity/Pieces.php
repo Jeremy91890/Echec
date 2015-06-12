@@ -11,10 +11,9 @@ abstract class Pieces
     protected $y;
     protected $plateau;
     protected $enDanger = false;
-    protected $estDeplace = false;
-    
+    protected $estDeplace = false;    
 	
-
+    
 	public function __construct($uneCouleur, $x, $y, $plateau){
 		
 		if(gettype($y) == "string") {
@@ -45,10 +44,6 @@ abstract class Pieces
 	
 	//________________________________________Accesseurs______________________________________________
 	
-	public function getType(){
-		return $this->type;
-	}
-	
 	public function getCouleur(){
 		return $this->couleur;
 	}
@@ -65,25 +60,36 @@ abstract class Pieces
 	}
 	//_______________________________________________________________________________________________
 	
-	public function lienString(){
-		
-		return 'voir'.$this->getX().chr($this->getY() + 97);			
+	private function lienString(){
+		if ($this->plateau->getCouleurJoueur() == $this->couleur ){
+			return 'voir'.$this->getX().chr($this->getY() + 97);		
+		}
 	
 	}
 	
-	public function lienDeplace(){
+	private function lienDeplace(){
+			return 'deplacer'.$this->getX().chr($this->getY() + 97);
 		
-		return 'deplacer'.$this->getX().chr($this->getY() + 97);
-		
+	}
+	
+	public function lien() {
+			if($this->enDanger) {
+				return $this->lienDeplace();
+			} else {
+				return $this->lienString();
+			}
 	}
 	
 	public function deplacement($x, $y) {
-		
-		$this->plateau->setCase($this->x, $this->y , new Vide($this->x, $this->y, $this->plateau));
-		$this->setPosition($x, $y);
-		$this->plateau->setCase($x, $y, $this);
-		$this->estDeplace = true;
-		$this->plateau->joueurSuivant();
+		if ($this->plateau->getCouleurJoueur() == $this->couleur ){
+			
+			$this->plateau->setCase($this->x, $this->y , new Vide($this->x, $this->y, $this->plateau));
+			$this->setPosition($x, $y);
+			$this->plateau->setCase($x, $y, $this);
+			$this->estDeplace = true;
+			$this->estSelectionne = false;
+			$this->plateau->joueurSuivant();
+		}
 		
 	}
 	

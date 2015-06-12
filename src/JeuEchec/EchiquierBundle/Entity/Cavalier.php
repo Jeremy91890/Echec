@@ -10,7 +10,12 @@ class Cavalier extends Pieces {
 		parent::__construct($uneCouleur, $x, $y, $plateau);
 	}
 	function toString() {
-		return 'Cavalier-'.$this->couleur;
+	if($this->couleur == 'Blanc'){
+			return 'cavalierBlanc.png';
+		}
+		else {
+			return 'cavalierNoir.png';
+		}
 	}
 
 	

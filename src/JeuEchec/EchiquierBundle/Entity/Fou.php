@@ -10,9 +10,13 @@ class Fou extends Pieces {
 		parent::__construct($uneCouleur, $x, $y, $plateau);
 	}
 
-	function toString() {		
-			return 'Fou-'.$this->couleur;
-		
+	function toString() {
+		if($this->couleur == 'Blanc'){
+			return 'fouBlanc.png';
+		}
+		else {
+			return 'fouNoir.png';
+		}
 	}
 
 	private function boucle($pmunx, $pmuny, &$caseLibre) {

@@ -12,7 +12,12 @@ class Tour extends Pieces {
 	}
 	
 	function toString() {
-		return 'Tour-'.$this->couleur;	
+		if($this->couleur == 'Blanc'){
+				return 'tourBlanche.png';
+			}
+			else {
+				return 'tourNoire.png';
+			}
 	}
 	
 	//Créer une fonction pour ne pas avoir a faire la meme boucle 4 fois 

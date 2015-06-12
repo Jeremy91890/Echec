@@ -10,7 +10,12 @@ class Reine extends Pieces {
 		parent::__construct($uneCouleur, $x, $y, $plateau);
 	}
 	function toString() {
-		return 'Reine-'.$this->couleur;
+		if($this->couleur == 'Blanc'){
+			return 'reineBlanche.png';
+		}
+		else {
+			return 'reineNoire.png';
+		}
 	}
 
 	

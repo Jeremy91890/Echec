@@ -12,7 +12,12 @@ class Pion extends Pieces {
 	}
 	
 	function toString() {
-		return 'Pion-'.$this->couleur;
+	if($this->couleur == 'Blanc'){
+			return 'pionBlanc.png';
+		}
+		else {
+			return 'pionNoir.png';
+		}
 	}
 	
 	private function verif($pmunx, $pmuny, &$caseLibre) {

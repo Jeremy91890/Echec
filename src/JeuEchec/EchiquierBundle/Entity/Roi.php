@@ -10,7 +10,12 @@ class Roi extends Pieces {
 		parent::__construct($uneCouleur, $x, $y, $plateau);
 	}
 	function toString() {
-		return 'Roi-'.$this->couleur;
+		if($this->couleur == 'Blanc'){
+				return 'roiBlanc.png';
+			}
+			else {
+				return 'roiNoir.png';
+			}
 	}
 
 	
