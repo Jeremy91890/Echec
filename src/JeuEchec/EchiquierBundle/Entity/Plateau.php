@@ -93,17 +93,16 @@ class Plateau
     }
     
     public function getCouleurJoueur(){
-    	if ($this->tour % 2 == 0){
-    		$couleurJoueur = 'Noir';
-    		$this->tour ++;
+    	return $this->couleurJoueur;
+    }
+    
+    public function joueurSuivant(){
+    	if ($this->tour % 2 != 0){
+    		$this->couleurJoueur = 'Blanc';
     	}
     	else{
-    		$couleurJoueur = 'Blanc';
-    		$this->tour ++;
+    		$this->couleurJoueur = 'Noir';
     	}
-    	return $couleurJoueur;
-    }
-    public function joueurSuivant(){
     	$this->tour ++;
     }
 }

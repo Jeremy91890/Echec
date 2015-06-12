@@ -10,21 +10,30 @@
 			{% if i % 2 == 0 %}
 				{% if n % 2 == 0 %}
 					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu"><a href="{{ matrice.get(i, n).lienDeplace() }}">{{ matrice.get(i, n).toString }}</a></td>
-					{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString()}}</a></td>
+					{% else %}{% if matrice.get(i, n).getCouleur() != matrice.getCouleurjoueur() %}<td class="caseNoire">{{ matrice.get(i, n).toString()}}</td>
+						{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString()}}</a></td>
+						{% endif %}
 					{% endif %}		
 				{% else %}
 					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu"><a href="{{ matrice.get(i, n).lienDeplace() }}">{{ matrice.get(i, n).toString }}</a></td>
-					{% else %}<td class="caseBlanche"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
+					{% else %}{% if matrice.get(i, n).getCouleur() != matrice.getCouleurjoueur() %}<td class="caseBlanche">{{ matrice.get(i, n).toString()}}</td>
+						{% else %}<td class="caseBlanche"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString()}}</a></td>
+						{%  endif%}
 					{% endif %}
 				{% endif %}
 			{% else %}
 				{% if n % 2 == 0 %}
 					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu"><a href="{{ matrice.get(i, n).lienDeplace() }}">{{ matrice.get(i, n).toString }}</a></td>
-					{% else %}<td class="caseBlanche"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
-					{% endif %}
+						{% else%}{% if matrice.get(i, n).getCouleur() != matrice.getCouleurjoueur() %}<td class="caseBlanche">{{ matrice.get(i, n).toString()}}</td>
+							{% else %}<td class="caseblanche"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString()}}</a></td>
+							{% endif %}
+						{% endif %}	
 				{% else %}
 					{% if matrice.get(i, n).estEnDanger() == 'true' %}<td class="caseBleu"><a href="{{ matrice.get(i, n).lienDeplace() }}">{{ matrice.get(i, n).toString }}</a></td>
-					{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString() }}</a></td>
+					{% else %}
+						{% if matrice.get(i, n).getCouleur() != matrice.getCouleurjoueur() %}<td class="caseNoire">{{ matrice.get(i, n).toString()}}</td>
+							{% else %}<td class="caseNoire"><a href="{{ matrice.get(i, n).lienString() }}">{{ matrice.get(i, n).toString()}}</a></td>
+						{%endif%}
 					{% endif %}
 				{% endif %}
 			{% endif %}
